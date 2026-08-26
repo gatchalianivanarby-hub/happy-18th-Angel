@@ -568,91 +568,6 @@ main {
 }
 
 /* ============================================================
-   SONG / CASSETTE SECTION
-============================================================ */
-.cassette {
-  background: var(--paper);
-  max-width: 480px;
-  margin: 0 auto 30px;
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 2px solid rgba(28, 82, 158, 0.15);
-  text-align: center;
-}
-
-.cassette-label small {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-.cassette-label strong {
-  display: block;
-  font-family: Georgia, serif;
-  font-size: 24px;
-  color: var(--blue-dark);
-  margin: 8px 0;
-}
-
-.cassette-label span {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.cassette-body {
-  background: #142846;
-  height: 110px;
-  border-radius: 14px;
-  margin: 25px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 35px;
-  position: relative;
-}
-
-.reel {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 4px solid #8db8e8;
-  background: var(--paper);
-}
-
-.cassette.playing .reel {
-  animation: spin 2s linear infinite;
-}
-
-.cassette-body .tape {
-  position: absolute;
-  width: 130px;
-  height: 12px;
-  background: #415f8a;
-}
-
-.play {
-  background: var(--blue);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-weight: bold;
-  box-shadow: 0 8px 20px rgba(28, 82, 158, 0.3);
-}
-
-.hint {
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 30px;
-}
-
-.hint b {
-  color: var(--blue);
-}
-
-/* ============================================================
    CAKE & CANDLE SECTION
 ============================================================ */
 .cake-stage {
@@ -998,4 +913,19 @@ footer {
   .hero-copy {
     padding: 35px 20px;
   }
+}
+
+/* ============================================================
+   TIKTOK VIDEO ENHANCEMENTS (Chapter 5)
+============================================================ */
+#song video {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 18px;
+  border: 4px solid white;
+  box-shadow: 0 15px 35px rgba(28, 82, 158, 0.25);
+  background: var(--blue-dark);
+  display: block;
+  margin: 0 auto;
+  outline: none;
 }
