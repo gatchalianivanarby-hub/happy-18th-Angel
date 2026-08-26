@@ -20,9 +20,9 @@ const modalNumber = document.getElementById("modalNo");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
 
-const audio = document.getElementById("audio");
 const soundButton = document.getElementById("sound");
-const playButton = document.getElementById("play");
+// Pinalitan ang audio references ng video element para sa TikTok video
+const tiktokVideo = document.getElementById("tiktokVideo");
 
 const candle = document.getElementById("candle");
 const blowButton = document.getElementById("blow");
@@ -126,7 +126,7 @@ const cardData = {
     title: "A little song for you",
 
     text:
-      "There's going to be a song here eventually. One that reminds me of you, your smile, and this little chapter of your life."
+      "A TikTok video is right here waiting for you. One that reminds me of your smile, your energy, and this special chapter of your life."
 
   },
 
@@ -320,7 +320,7 @@ backButtons.forEach(button => {
 
 
 /* =====================================================
-   MUSIC
+   MUSIC / SOUND TOGGLE (NAV BAR)
 ===================================================== */
 
 let musicPlaying = false;
@@ -331,7 +331,7 @@ soundButton.addEventListener("click", async () => {
 
     if (musicPlaying) {
 
-      audio.pause();
+      tiktokVideo.pause();
 
       musicPlaying = false;
 
@@ -339,7 +339,7 @@ soundButton.addEventListener("click", async () => {
 
     } else {
 
-      await audio.play();
+      await tiktokVideo.play();
 
       musicPlaying = true;
 
@@ -350,84 +350,30 @@ soundButton.addEventListener("click", async () => {
   } catch (error) {
 
     console.log(
-      "Music could not be played:",
+      "Video could not be played:",
       error
     );
 
     alert(
-      "Add your song as 'song.mp3' in the same folder as this website first. ♡"
+      "Add your TikTok video as 'song.mp4' in the same folder as this website first. ♡"
     );
 
   }
 
 });
 
+// Synchronization kapag nag-play/pause manually sa video element
+if (tiktokVideo) {
+  tiktokVideo.addEventListener("pause", () => {
+    musicPlaying = false;
+    soundButton.textContent = "♫";
+  });
 
-playButton.addEventListener("click", async () => {
-
-  try {
-
-    if (audio.paused) {
-
-      await audio.play();
-
-      musicPlaying = true;
-
-      playButton.textContent = "❚❚ pause";
-
-      document
-        .querySelector(".cassette")
-        .classList.add("playing");
-
-    } else {
-
-      audio.pause();
-
-      musicPlaying = false;
-
-      playButton.textContent = "▶ play";
-
-      document
-        .querySelector(".cassette")
-        .classList.remove("playing");
-
-    }
-
-  } catch (error) {
-
-    alert(
-      "Put your chosen song in this folder and name it 'song.mp3'. ♡"
-    );
-
-  }
-
-});
-
-
-audio.addEventListener("pause", () => {
-
-  musicPlaying = false;
-
-  playButton.textContent = "▶ play";
-
-  document
-    .querySelector(".cassette")
-    .classList.remove("playing");
-
-});
-
-
-audio.addEventListener("play", () => {
-
-  musicPlaying = true;
-
-  playButton.textContent = "❚❚ pause";
-
-  document
-    .querySelector(".cassette")
-    .classList.add("playing");
-
-});
+  tiktokVideo.addEventListener("play", () => {
+    musicPlaying = true;
+    soundButton.textContent = "❚❚";
+  });
+}
 
 
 /* =====================================================
@@ -596,19 +542,14 @@ againButton.addEventListener("click", () => {
   envelope.querySelector("span").textContent =
     "no pressure · no rush";
 
-  audio.pause();
-
-  audio.currentTime = 0;
+  if (tiktokVideo) {
+    tiktokVideo.pause();
+    tiktokVideo.currentTime = 0;
+  }
 
   musicPlaying = false;
 
   soundButton.textContent = "♫";
-
-  playButton.textContent = "▶ play";
-
-  document
-    .querySelector(".cassette")
-    .classList.remove("playing");
 
   window.scrollTo({
     top: 0,
@@ -631,7 +572,7 @@ againButton.addEventListener("click", () => {
 ===================================================== */
 
 const revealElements = document.querySelectorAll(
-  ".paper-card, .wish, .polaroid, .cassette, .envelope"
+  ".paper-card, .wish, .polaroid, #tiktokVideo, .envelope"
 );
 
 const revealObserver =
